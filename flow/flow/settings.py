@@ -84,12 +84,25 @@ WSGI_APPLICATION = 'flow.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# TODO, I changed this to test psql connection
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default':{
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME':'flow_database',
+        'USER':'samsara',
+        'PASSWORD':'Samsara13samsara',
+        'HOST':'localhost',
+        'PORT':'5432'
     }
 }
+
 
 
 # Password validation
