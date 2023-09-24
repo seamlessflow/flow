@@ -10,7 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
+from dotenv import load_dotenv
 from pathlib import Path
+
+# Loading environment variables
+load_dotenv()
+
+db_name, db_user, db_passwd = os.getenv('DB_NAME'), os.getenv('DB_USER'), os.getenv('DB_PASSWORD')
+db_host, db_port, django_key = os.getenv('DB_HOST'), os.getenv('DB_PORT'), os.getenv('DJANGO_KEY')
+allowed_hosts = os.getenv('ALLOWED_HOSTS')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +29,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o1gvm_(7$l$z$wadgpt!feooj&2x^pgraiwuu^vpy+=e%zbf!)'
+SECRET_KEY = django_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.162', '192.168.1.170', '148.63.3.116']
+ALLOWED_HOSTS = allowed_hosts.split()
 
 
 # Application definition
@@ -95,11 +104,11 @@ WSGI_APPLICATION = 'flow.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE':'django.db.backends.postgresql',
-        'NAME':'flow_database',
-        'USER':'samsara',
-        'PASSWORD':'Samsara13samsara',
-        'HOST':'localhost',
-        'PORT':'5432'
+        'NAME':db_name,
+        'USER':db_user,
+        'PASSWORD':db_passwd,
+        'HOST':db_host,
+        'PORT':db_port
     }
 }
 
