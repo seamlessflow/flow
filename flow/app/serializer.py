@@ -7,11 +7,45 @@ which will be used with React on the client side
 '''
 
 from rest_framework import serializers
-from .models import React  
+from .models import User, Team, Organization, Post  
 
-class ReactSerializer(serializers.ModelSerializer):
+# class ReactSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = React
+#         fields = [
+#             'user', 'team', 'organization', 'date_of_birth'
+#         ]
+
+
+### LOGIN SERIALIZERS ###
+
+class UserLoginSerializer(serializers.ModelSerializer):
     class Meta:
-        model = React
+        model = User
         fields = [
-            'user', 'team', 'organization'
+            'user_name', 'password', 'email', 'team', 'organization'
+        ]
+
+class TeamLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = [
+            'team_name', 'password', 'admin_email'
+        ]
+
+class OrganizationLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Organization
+        fields = [
+            'organization_name', 'password', 'admin_email'
+        ]
+
+
+### POSTS SERIALIZERS ###
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = [
+            'name','description', 'content'
         ]

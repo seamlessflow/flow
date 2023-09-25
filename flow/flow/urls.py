@@ -17,10 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include 
 # from django.conf.urls import url, url is deprecated in favour of path and re_path
-from app.views import ReactView
+from app.views import UserLoginView, TeamLoginView, OrganizationLoginView, PostView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Here we have defined localhost:8000 to be the endport for the ReactView class
-    path('', ReactView.as_view(), name='anything'),  # BUG, look into name here
+    # path('', ReactView.as_view(), name='anything'),  # BUG, look into name here
+    path('login/users/', UserLoginView.as_view(), name='user_login'),
+    path('login/teams/', TeamLoginView.as_view(), name='team_login'),
+    path('login/organizations/', OrganizationLoginView.as_view(), name='organization_login'),
+    path('posts/', PostView.as_view(), name='posts')
 ]
